@@ -7,8 +7,12 @@ const cookie = require('cookie')
 const app = express()
 const server = require('http').createServer(app)
 
+const returnRandom = () => {
+  return Date.now().toString()
+}
+
 app.get('/index', (req, res) => {
-  res.header('Set-Cookie', cookie.serialize('name', 'cookieA', {
+  res.header('Set-Cookie', cookie.serialize('nyan', returnRandom(), {
     httpOnly: true,
     maxAge: 60 * 1,
   }));
@@ -17,7 +21,7 @@ app.get('/index', (req, res) => {
 })
 
 app.get('/lineData', (req, res) => {
-  res.header('Set-Cookie', cookie.serialize('name', 'cookieA', {
+  res.header('Set-Cookie', cookie.serialize('nyan', returnRandom(), {
     httpOnly: true,
     maxAge: 60 * 1,
   }));
