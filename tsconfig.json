@@ -13,7 +13,7 @@
   },
   "compileOnSave": false,
   "include": [
-    "src"
+    "./**/*.ts"
   ],
   "exclude": [
     "node_modules"

@@ -1,6 +1,7 @@
 <template>
 	<div :class="$style.app">
-		<modal :show="modal.show" :onClose="onClose" ></modal>
+		<modal :show="isOpen" :onClose="closeLoading" ></modal>
+		<button @click="open">open</button>
 		<slot></slot>
 		<router-view></router-view>
 	</div>
@@ -9,15 +10,23 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import { mapActions, mapGetters } from 'vuex'
 
-@Component({})
+@Component({
+	methods: {
+		...mapActions('modal', [
+			'closeLoading', 'openModal'
+		]),
+	},
+	computed: {
+		...mapGetters('modal', [
+			'isOpen'
+		])
+	},
+})
 export default class App extends Vue {
-	modal = {
-		show: true
-	}
-
-	onClose(this: App) {
-		this.modal.show = false
+	open() {
+		(this as any).openModal('CONFIRM')
 	}
 }
 </script>
