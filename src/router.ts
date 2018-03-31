@@ -9,7 +9,7 @@ const router = new Router({
 	routes: [
 		{
 			path: '/hoge',
-			name: 'HelloWorld',
+			name: 'hoge',
 			component: {
 				template: '<div>myaou</div>'
 			}
