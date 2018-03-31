@@ -1,4 +1,7 @@
 {
+	"extends": [
+		"tslint-config-prettier"
+	],
 	"rules": {
 		"class-name": true,
 		"comment-format": [true, "check-space"],

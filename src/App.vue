@@ -10,8 +10,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-@Component({
-})
+@Component({})
 export default class App extends Vue {
 	modal = {
 		show: true
@@ -24,7 +23,7 @@ export default class App extends Vue {
 </script>
 
 <style module>
-	.app {
-		display: flex;
-	}
+.app {
+	display: flex;
+}
 </style>

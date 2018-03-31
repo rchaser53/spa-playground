@@ -21,22 +21,22 @@ export default class extends Vue {}
 </script>
 
 <style module>
-	.modal {
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		display: block;
-		width: 100%;
-		height: 100%;
-		background-color: black;
-		opacity: 0.1;
-	}
+.modal {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.1;
+}
 
-	.frame {
-		display: flex;
-		width: 100%;
-		height: 100%;
-		justify-content: center;
-		align-items: center;
-	}
+.frame {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
 </style>
