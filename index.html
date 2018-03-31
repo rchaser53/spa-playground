@@ -1,25 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-  </head>
+  <head></head>
   <body>
-    <div>nya an</div>
-    <button id="refreshBtn">refresh</button>
-
-    <!-- <script src="/server.js"></script> -->
-    <script>
-      window.onload = () => {
-        document.querySelector('#refreshBtn').addEventListener('click', () => {
-          axios.get('/lineData')
-                .then((ret) => {
-                  console.log(ret)
-                })
-                .catch((err) => {
-                  console.error(err)
-                })
-        })
-      }
-    </script>
+    <div id="app"></div>
+    <script src="/bundle.js"></script>
   </body>
 </html>
