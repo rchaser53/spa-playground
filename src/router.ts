@@ -4,7 +4,7 @@ import NativeTs from './components/native-ts.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
 	mode: 'history',
 	routes: [
 		{
@@ -14,12 +14,18 @@ export default new Router({
 				template: '<div>myaou</div>'
 			}
 		},
-		// this is kinda 404
 		{
 			path: '/*',
+			name: 'error',
 			component: {
 				template: '<div>nya-n</div>'
 			}
 		}
 	]
 })
+
+router.onReady(({ name }) => {
+	document.title = name
+})
+
+export default router
