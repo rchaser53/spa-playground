@@ -8,6 +8,7 @@
 					<p><router-link to="hoge">hoge2</router-link></p>
 					<p><router-link to="fuga">fuga</router-link></p>
 					<p><router-link to="google.com">gooooo</router-link></p>
+					<p><a id="hoge" href="https://google.com">aaaa</a></p>
 				</div>
 				<div slot="main" style="display:block; width: 500px; background-color: red;">
 					aaa
@@ -15,6 +16,13 @@
 			</app>
 		</div>
 		<div id="modal"></div>
-    <script src="/bundle.js"></script>
+		<script src="/bundle.js"></script>
+		<script>
+			window.onload = () => {
+				document.querySelector('#hoge').addEventListener('click', (e) => {
+					console.log(123)
+				})
+			}
+		</script>
   </body>
 </html>
