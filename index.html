@@ -4,9 +4,13 @@
   <body>
     <div id="app">
 			<app>
-				<div style="display:block; width: 150px;">
-					<p><a href="/hoge">hoge</a></p>
-					<p><a href="/fuga">fuga</a></p>
+				<div slot="sidebar" style="display:block; width: 250px; background-color: green;">
+					<p><router-link to="hoge">hoge2</router-link></p>
+					<p><router-link to="fuga">fuga</router-link></p>
+					<p><router-link to="google.com">gooooo</router-link></p>
+				</div>
+				<div slot="main" style="display:block; width: 500px; background-color: red;">
+					aaa
 				</div>
 			</app>
 		</div>

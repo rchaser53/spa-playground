@@ -1,21 +1,34 @@
 <template>
 	<div :class="$style.app">
-		<modal :show="isOpen" :onClose="closeLoading" ></modal>
-		<button @click="openModal">open</button>
-		<slot></slot>
-		<router-view></router-view>
+		<!-- <modal :show="isOpen" :onClose="closeLoading" ></modal> -->
+		<!-- <button @click="openModal">open</button> -->
+		<slot name="sidebar"></slot>
+		<!-- <sidebar></sidebar> -->
+		<router-view>
+			<slot name="main"></slot>
+		</router-view>
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+// import Sidebar from './components/Sidebar.vue'
 import Component from 'vue-class-component'
 import { mapActions, mapGetters } from 'vuex'
+import { VueConstructor } from 'vue/types/vue';
+
+export interface IApp {
+	hongya: number
+}
+namespace VueConstructor {
+	type hongya = number
+}
+export type Haaa = VueConstructor<Vue>
 
 @Component({
 	methods: {
 		...mapActions('modal', {
-			openModal(dispatch) {
+			openModal(this: Haaa, dispatch) {
 				dispatch('CONFIRM')
 			}
 		}),
@@ -28,13 +41,16 @@ import { mapActions, mapGetters } from 'vuex'
 			'isOpen'
 		])
 	},
+	components: {}
 })
-export default class App extends Vue {
+export default class App extends Vue implements IApp {
+	hongya = 23
 }
 </script>
 
 <style module>
 .app {
 	display: flex;
+	width: 100%;
 }
 </style>

@@ -18,7 +18,7 @@ const router = new Router({
 			path: '/*',
 			name: 'error',
 			component: {
-				template: '<div>nya-n</div>'
+				template: '<div><slot></slot></div>'
 			}
 		}
 	]
