@@ -9,13 +9,21 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import VueI18n from 'vue-i18n'
+import lang from './lang'
 
 @Component({
 	name: 'Modal',
 	props: {
 		show: Boolean,
 		onClose: Function
-	}
+  },
+  // i18n: {
+  //   messages: {
+  //     en: { message: { hello: 'hello component1' } },
+  //     ja: { message: { hello: 'こんにちは、component1' } }
+  //   }
+  // }
 })
 export default class extends Vue {}
 </script>

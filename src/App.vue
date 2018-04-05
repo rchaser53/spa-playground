@@ -2,8 +2,9 @@
 	<div :class="$style.app">
 		<!-- <modal :show="isOpen" :onClose="closeLoading" ></modal> -->
 		<!-- <button @click="openModal">open</button> -->
-		<slot name="sidebar"></slot>
-		<!-- <sidebar></sidebar> -->
+		<!-- <slot name="sidebar"></slot> -->
+		<sidebar></sidebar>
+    {{ $t("message.hello") }}
 		<router-view>
 			<slot name="main"></slot>
 		</router-view>
@@ -12,7 +13,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-// import Sidebar from './components/Sidebar.vue'
+import Sidebar from './components/Sidebar.vue'
 import Component from 'vue-class-component'
 import { mapActions, mapGetters } from 'vuex'
 import { VueConstructor } from 'vue/types/vue';
@@ -41,7 +42,12 @@ export type Haaa = VueConstructor<Vue>
 			'isOpen'
 		])
 	},
-	components: {}
+	components: {
+		Sidebar
+  },
+  mounted() {
+    this.$i18n.locale = 'en'
+  }
 })
 export default class App extends Vue implements IApp {
 	hongya = 23
