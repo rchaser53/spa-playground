@@ -9,7 +9,7 @@ export default class Pages {
 
   create(currentPage: number, totalRecord: number): number[] {
     if (totalRecord < this.limit) return []
-    if (this.isCreatePagesFromStart(currentPage, totalRecord)) return this.createFromZero(totalRecord)
+    if (this.isCreatePagesFromStart(currentPage, totalRecord)) return this.createFromZero(currentPage, totalRecord)
   
     return this.createPages(currentPage, totalRecord)
   }
@@ -28,10 +28,13 @@ export default class Pages {
     return false
   }
 
-  createFromZero(totalRecord: number): number[] {
+  createFromZero(currentPage: number, totalRecord: number): number[] {
     const pages: number[] = []
     const pagesLength =  Math.ceil(totalRecord / this.limit)
-    for (let i = 0; i < pagesLength; i++) {
+    const limit = pagesLength < this.countOfPage
+                    ? pagesLength
+                    : this.countOfPage
+    for (let i = 0; i < limit; i++) {
       pages.push(i)
     }
     return pages
