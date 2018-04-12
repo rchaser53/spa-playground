@@ -13,9 +13,19 @@ import Child from './Child.vue'
 @Component({
 	components: {
 		Child,
-	},
+  },
+  mounted(this: Parent) {
+    setTimeout(() => {
+      this.article = {
+        textA: 'textA',
+        textB: 'textB',
+        selectA: '2',
+      }
+      console.log(22)
+    }, 1000)
+  }
 })
-export default class Sidebar extends Vue {
+export default class Parent extends Vue {
   article = {
     textA: '',
     textB: '',

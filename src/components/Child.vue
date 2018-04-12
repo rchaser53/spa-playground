@@ -1,10 +1,10 @@
 <template>
   <div>
     <div>
-      <input v-model="watchObj.textA" />
+      <input v-model="textA" />
     </div>
     <div>
-      <input v-model="watchObj.textB" />
+      <input v-model="textB" />
     </div>
     <div>
       <select :value="article.selectA" @change="setSelectA">
@@ -20,29 +20,26 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import Child from './Child.vue'
 
 @Component({
   props: {
     createSetter: Function,
     article: Object
   },
-	components: {
-		Child,
-  },
-  watch: {
-    'watchObj.textA'(newVal, _) {
-      this.$props.createSetter('textA')(newVal)
-    },
-    'watchObj.textB'(newVal) {
-      this.$props.createSetter('textB')(newVal)
-    },
-  },
 })
-export default class Sidebar extends Vue {
-  watchObj = {
-    textA: '',
-    textB: ''
+export default class Child extends Vue {
+  get textA() {
+    return this.$props.article.textA
+  }
+  set textA(value) {
+    this.$props.createSetter('textA')(value)
+  }
+
+  get textB() {
+    return this.$props.article.textB
+  }
+  set textB(value) {
+    this.$props.createSetter('textB')(value)
   }
 
   setSelectA(event) {
