@@ -1,12 +1,13 @@
 <template>
   <div>
+    <button @click="getEndpoint">button</button>
     <child :create-setter="createSetter" :article="article"></child>
   </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import Component from 'vue-class-component'
+import Component, { createDecorator } from 'vue-class-component'
 
 import Axios from 'axios'
 import Child from './Child.vue'
@@ -17,7 +18,17 @@ const axios = Axios.create({
 
 const CancelToken = Axios.CancelToken;
 
-const createComponent = (httpClient) => {
+const abc = createDecorator((options, key) => {
+  (options.mixins as any).push({
+    data() {
+      return {
+        nyan: 'naya'
+      }
+    }
+  })
+})
+
+const createComponent = (httpClient, deco) => {
   @Component({
     components: {
       Child,
@@ -43,6 +54,13 @@ const createComponent = (httpClient) => {
       textB: '',
       selectA: ''
     }
+    nyan: string = ''
+
+    @deco
+    getEndpoint(): string {
+      console.log(this.nyan)
+      return this.nyan
+    }
 
     createSetter(key: string) {
       return (value) => {
@@ -55,6 +73,6 @@ const createComponent = (httpClient) => {
 }
 
 
-export default createComponent(axios)
+export default createComponent(axios, abc)
 
 </script>
