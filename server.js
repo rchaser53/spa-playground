@@ -28,6 +28,15 @@ app.get('/lineData', (req, res) => {
   res.json({ abc: 'def'})
 })
 
+app.get('/test', (req, res) => {
+  setTimeout(() => {
+    res.json({ Date: Date.now()})
+  }, 2000)
+})
+app.post('/test', (req, res) => {
+  res.json({ Date: 'nya-n'})
+})
+
 server.listen(3000, () => {
   console.log('run server')
 })
