@@ -11,18 +11,18 @@ const source = CancelToken.source()
 const uri = '/test'
 const notFoundUri = '/notFound'
 const notFoundUri2 = '/notFound2'
-const getSomething = (innerUri, cancelToken) => {
+const getSomething = (innerUri, source) => {
   return axios.get(innerUri, {
-    cancelToken
+    cancelToken: source.token
   });
 }
 
-const getSomethingLate = (innerUri, cancelToken) => {
+const getSomethingLate = (innerUri, source) => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       try {
         const ret = await axios.get(innerUri, {
-          cancelToken
+          cancelToken: source.token
         })
         resolve(ret);
       } catch (err) {
@@ -33,9 +33,9 @@ const getSomethingLate = (innerUri, cancelToken) => {
 }
 
 Promise.all([
-  getSomething(uri),
-  getSomethingLate(uri),
-  getSomethingLate(uri),
+  getSomething(uri, source),
+  getSomethingLate(uri, source),
+  getSomethingLate(uri, source),
 ])
 .then((ret) => {
   ret.forEach((inner) => {
@@ -43,3 +43,8 @@ Promise.all([
   })
 })
 .catch(errorHandling);
+
+setTimeout((ret) => {
+  source.cancel('nya-n')
+// too late
+}, 1500)
