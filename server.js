@@ -7,6 +7,11 @@ const cookie = require('cookie')
 const app = express()
 const server = require('http').createServer(app)
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  next()
+})
+
 const returnRandom = () => {
   return Date.now().toString()
 }
@@ -36,6 +41,17 @@ app.get('/test', (req, res) => {
 app.post('/test', (req, res) => {
   res.json({ Date: 'nya-n'})
 })
+
+app.get('/article', (req, res) => {
+  setTimeout(() => {
+    res.json({
+      textA: 'textA',
+      textB: 'textB',
+      selectA: '2',
+    })
+  }, 5000)
+})
+
 
 server.listen(3000, () => {
   console.log('run server')

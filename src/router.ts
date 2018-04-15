@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NativeTs from './components/native-ts.vue'
 import Parent from './components/Parent.vue'
+import Hoge from './components/Hoge.vue'
 
 Vue.use(Router)
 
@@ -11,9 +12,7 @@ const router = new Router({
 		{
 			path: '/hoge',
 			name: 'hoge',
-			component: {
-				template: '<div>myaou</div>'
-			}
+			component: Hoge
     },
     {
 			path: '/parent',
