@@ -12,18 +12,14 @@ const uri = '/test'
 const notFoundUri = '/notFound'
 const notFoundUri2 = '/notFound2'
 const getSomething = (innerUri, source) => {
-  return axios.get(innerUri, {
-    cancelToken: source.token
-  });
+  return axios.get(innerUri, options);
 }
 
-const getSomethingLate = (innerUri, source) => {
+const getSomethingLate = (innerUri, options) => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       try {
-        const ret = await axios.get(innerUri, {
-          cancelToken: source.token
-        })
+        const ret = await axios.get(innerUri, options)
         resolve(ret);
       } catch (err) {
         reject(err)
@@ -32,10 +28,28 @@ const getSomethingLate = (innerUri, source) => {
   })
 }
 
+const options = {
+  cancelToken: source.token,
+  adapter(config) {
+    return new Promise((resolve, reject) => {
+      const endpoint = config.url.split('/').pop()
+
+      const data = endpoint.includes('notFound')
+                      ? { notFound: 'notFound' }
+                      : { nyan: 'nya-n' }
+
+      resolve({
+        status: 200,
+        data
+      })
+    })
+  }
+}
+
 Promise.all([
-  getSomething(uri, source),
-  getSomethingLate(uri, source),
-  getSomethingLate(uri, source),
+  getSomething(uri, options),
+  getSomethingLate(notFoundUri2, options),
+  getSomethingLate(uri, options),
 ])
 .then((ret) => {
   ret.forEach((inner) => {
