@@ -16,9 +16,8 @@ const axios = Axios.create({
 })
 
 const CancelToken = Axios.CancelToken;
-const source = CancelToken.source()
 
-const createComponent = (httpClient, cancelToken) => {
+const createComponent = (httpClient) => {
   @Component({
     components: {
       Child,
@@ -26,18 +25,19 @@ const createComponent = (httpClient, cancelToken) => {
     mounted: async function(this: Parent) {
       try {
         const { data } = await httpClient.get('/article', {
-          cancelToken: cancelToken.token
+          cancelToken: this.cancelToken.token
         })
         this.article = data;
       } catch (err) {
         console.error(err)
       }
     },
-    beforeDestroy() {
-      cancelToken.cancel('move another path')
+    beforeDestroy(this: Parent) {
+      this.cancelToken.cancel('move another path')
     }
   })
   class Parent extends Vue {
+    cancelToken = CancelToken.source()
     article = {
       textA: '',
       textB: '',
@@ -53,6 +53,8 @@ const createComponent = (httpClient, cancelToken) => {
 
   return Parent
 }
-export default createComponent(axios, source)
+
+
+export default createComponent(axios)
 
 </script>
