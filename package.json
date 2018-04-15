@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --port 3100",
     "format": "./node_modules/.bin/prettier --write \"src/**/*.{ts,html,vue}\"",
     "test": "jest --no-cache"
   },
@@ -15,6 +15,7 @@
     "axios": "^0.18.0",
     "cookie": "^0.3.1",
     "express": "^4.16.3",
+    "rxjs": "^5.5.10",
     "typescript": "^2.6.2",
     "vue": "^2.5.16",
     "vue-class-component": "^6.2.0",

@@ -47,9 +47,17 @@ app.get('/article', (req, res) => {
     res.json({
       textA: 'textA',
       textB: 'textB',
-      selectA: '2',
+      selectA: '1',
     })
   }, 5000)
+})
+
+app.get('/article2', (req, res) => {
+  res.json({
+    textA: 'textA2',
+    textB: 'textB2',
+    selectA: '1',
+  })
 })
 
 
