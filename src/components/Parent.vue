@@ -1,16 +1,10 @@
-<template>
-  <div>
-    <button @click="getEndpoint">button</button>
-    <child :create-setter="createSetter" :article="article"></child>
-  </div>
-</template>
-
 <script lang='ts'>
 import Vue from 'vue'
-import Component, { createDecorator } from 'vue-class-component'
+import Component, { createDecorator, mixins } from 'vue-class-component'
 
 import Axios from 'axios'
 import Child from './Child.vue'
+import ParentTemplateMixin from './ParentTemplateMixin.vue'
 
 const axios = Axios.create({
   baseURL: 'http://localhost:3000'
@@ -18,17 +12,7 @@ const axios = Axios.create({
 
 const CancelToken = Axios.CancelToken;
 
-const abc = createDecorator((options, key) => {
-  (options.mixins as any).push({
-    data() {
-      return {
-        nyan: 'naya'
-      }
-    }
-  })
-})
-
-export const createClass = (httpClient, deco) => {
+export const createClass = function(httpClient, mixinsComponent) {
   const decoratorObj = {
     components: {
       Child,
@@ -45,11 +29,11 @@ export const createClass = (httpClient, deco) => {
     },
     beforeDestroy(this: Parent) {
       this.cancelToken.cancel('move another path')
-    }
+    },
   }
 
   @Component(decoratorObj)
-  class Parent extends Vue {
+  class Parent extends mixins(ParentTemplateMixin) {
     cancelToken = CancelToken.source()
     article = {
       textA: '',
@@ -58,9 +42,7 @@ export const createClass = (httpClient, deco) => {
     }
     nyan: string = ''
 
-    @deco
     getEndpoint(): string {
-      console.log(this.nyan)
       return this.nyan
     }
 
@@ -73,8 +55,6 @@ export const createClass = (httpClient, deco) => {
 
   return Parent
 }
-
-
-export default createClass(axios, abc)
+export default createClass(axios, ParentTemplateMixin)
 
 </script>
