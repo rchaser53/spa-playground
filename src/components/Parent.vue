@@ -1,25 +1,19 @@
 <script lang='ts'>
 import Vue from 'vue'
-import Component, { createDecorator, mixins } from 'vue-class-component'
+import Component, { mixins } from 'vue-class-component'
 
-import Axios from 'axios'
-import Child from './Child.vue'
+import { httpClient, cancelToken } from '../utils/http'
 import ParentTemplateMixin from './ParentTemplateMixin.vue'
+import Child from './Child.vue'
 
-const axios = Axios.create({
-  baseURL: 'http://localhost:3000'
-})
-
-const CancelToken = Axios.CancelToken;
-
-export const createClass = function(httpClient, mixinsComponent) {
+export const createClass = function(client, templateMixin) {
   const decoratorObj = {
     components: {
       Child,
     },
     mounted: async function(this: Parent) {
       try {
-        const { data } = await httpClient.get('/article', {
+        const { data } = await client.get('/article', {
           cancelToken: this.cancelToken.token
         })
         this.article = data;
@@ -33,17 +27,12 @@ export const createClass = function(httpClient, mixinsComponent) {
   }
 
   @Component(decoratorObj)
-  class Parent extends mixins(ParentTemplateMixin) {
-    cancelToken = CancelToken.source()
+  class Parent extends mixins(templateMixin) {
+    cancelToken = cancelToken.source()
     article = {
       textA: '',
       textB: '',
       selectA: ''
-    }
-    nyan: string = ''
-
-    getEndpoint(): string {
-      return this.nyan
     }
 
     createSetter(key: string) {
@@ -55,6 +44,6 @@ export const createClass = function(httpClient, mixinsComponent) {
 
   return Parent
 }
-export default createClass(axios, ParentTemplateMixin)
+export default createClass(httpClient, ParentTemplateMixin)
 
 </script>
