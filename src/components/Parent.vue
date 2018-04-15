@@ -28,8 +28,8 @@ const abc = createDecorator((options, key) => {
   })
 })
 
-const createComponent = (httpClient, deco) => {
-  @Component({
+export const createClass = (httpClient, deco) => {
+  const decoratorObj = {
     components: {
       Child,
     },
@@ -46,7 +46,9 @@ const createComponent = (httpClient, deco) => {
     beforeDestroy(this: Parent) {
       this.cancelToken.cancel('move another path')
     }
-  })
+  }
+
+  @Component(decoratorObj)
   class Parent extends Vue {
     cancelToken = CancelToken.source()
     article = {
@@ -73,6 +75,6 @@ const createComponent = (httpClient, deco) => {
 }
 
 
-export default createComponent(axios, abc)
+export default createClass(axios, abc)
 
 </script>
