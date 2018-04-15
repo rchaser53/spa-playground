@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { errorHandling } = require('./error')
 
 const CancelToken = axios.CancelToken;
 const source = CancelToken.source()
@@ -12,16 +13,7 @@ axios.get(uri, {
   .then((ret) => {
     console.log(ret.data)
   })
-  .catch((err) => {
-    if (axios.isCancel(err)) {
-      console.log('Request canceled', err.message);
-    } else {
-      const {
-        data, status, statusText, headers
-      } = err.response
-      console.error(status, statusText)
-    }
-  });
+  .catch(errorHandling);
 
 setTimeout(() => {
   source.cancel('Operation canceled by the user.')
@@ -34,14 +26,5 @@ setTimeout(() => {
   .then((ret) => {
     console.log(ret)
   })
-  .catch((err) => {
-    if (axios.isCancel(err)) {
-      console.log('Request canceled', err.message);
-    } else {
-      const {
-        data, status, statusText, headers
-      } = err.response
-      console.error(status, statusText)
-    }
-  });
+  .catch(errorHandling);
 }, 100)
