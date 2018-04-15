@@ -17,12 +17,29 @@ const getSomething = (innerUri, cancelToken) => {
   });
 }
 
+const getSomethingLate = (innerUri, cancelToken) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      try {
+        const ret = await axios.get(innerUri, {
+          cancelToken
+        })
+        resolve(ret);
+      } catch (err) {
+        reject(err)
+      } 
+    }, 1000);
+  })
+}
+
 Promise.all([
   getSomething(uri),
-  getSomething(notFoundUri2),
-  getSomething(notFoundUri),
+  getSomethingLate(uri),
+  getSomethingLate(uri),
 ])
 .then((ret) => {
-  console.log(ret)
+  ret.forEach((inner) => {
+    console.log(inner.data)
+  })
 })
 .catch(errorHandling);
