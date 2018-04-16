@@ -2,11 +2,11 @@
 import Vue from 'vue'
 import Component, { mixins } from 'vue-class-component'
 
-import { httpClient, cancelToken } from '../../utils/http'
 import ParentTemplateMixin from './ParentTemplateMixin.vue'
-import Child from '../Child.vue'
+import Child from '../../Child.vue'
 
-export const createClass = function(client, templateMixin, overwriteDecorator = {}) {
+export const createClass = function(httpObj, templateMixin, overwriteDecorator = {}) {
+  const { client, cancelToken } = httpObj;
   const decoratorObj = {
     components: {
       Child,
@@ -53,5 +53,5 @@ export const createClass = function(client, templateMixin, overwriteDecorator = 
   return Base
 }
 
-export default createClass(httpClient, ParentTemplateMixin)
+export default {}
 </script>
