@@ -4,9 +4,9 @@
 		<!-- <button @click="openModal">open</button> -->
 		<!-- <slot name="sidebar"></slot> -->
 		<sidebar></sidebar>
-    {{ $t("message.hello") }}
-		<router-view>
-			<slot name="main"></slot>
+    <!-- {{ $t("message.hello") }} -->
+		<router-view  style="padding-left:100px;">
+			<!-- <slot name="main"></slot> -->
 		</router-view>
 	</div>
 </template>

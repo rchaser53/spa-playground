@@ -49,7 +49,7 @@ app.get('/article', (req, res) => {
       textB: 'textB',
       selectA: '1',
     })
-  }, 5000)
+  }, 2000)
 })
 
 app.get('/article2', (req, res) => {

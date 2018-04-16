@@ -2,18 +2,18 @@
 import Vue from 'vue'
 import Component, { mixins } from 'vue-class-component'
 
-import { httpClient, cancelToken } from '../utils/http'
+import { httpClient, cancelToken } from '../../utils/http'
 import ParentTemplateMixin from './ParentTemplateMixin.vue'
-import Child from './Child.vue'
+import Child from '../Child.vue'
 
-export const createClass = function(client, templateMixin) {
+export const createClass = function(client, templateMixin, overwriteDecorator = {}) {
   const decoratorObj = {
     components: {
       Child,
     },
-    mounted: async function(this: Parent) {
+    mounted: async function(this: Base) {
       try {
-        const { data } = await client.get('/article', {
+        const { data } = await client.get(this.articleEndpoint, {
           cancelToken: this.cancelToken.token
         })
         this.article = data;
@@ -21,19 +21,27 @@ export const createClass = function(client, templateMixin) {
         console.error(err)
       }
     },
-    beforeDestroy(this: Parent) {
+    data() {
+      return {
+        articleEndpoint: '/article'
+      }
+    },
+    beforeDestroy(this: Base) {
       this.cancelToken.cancel('move another path')
     },
+    ...overwriteDecorator
+    // data, components, methodなどを変更する予定
   }
 
   @Component(decoratorObj)
-  class Parent extends mixins(templateMixin) {
+  class Base extends mixins(templateMixin) {
     cancelToken = cancelToken.source()
     article = {
       textA: '',
       textB: '',
       selectA: ''
     }
+    articleEndpoint: string = ''
 
     createSetter(key: string) {
       return (value) => {
@@ -42,8 +50,8 @@ export const createClass = function(client, templateMixin) {
     }
   }
 
-  return Parent
+  return Base
 }
-export default createClass(httpClient, ParentTemplateMixin)
 
+export default createClass(httpClient, ParentTemplateMixin)
 </script>

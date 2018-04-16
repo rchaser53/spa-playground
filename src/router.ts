@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NativeTs from './components/native-ts.vue'
-import Parent from './components/Parent.vue'
-import ParentB from './components/ParentB.vue'
 import Hoge from './components/Hoge.vue'
+import ParentA from './components/parent/ParentA.vue'
+import ParentB from './components/parent/ParentB.vue'
 
 Vue.use(Router)
 
@@ -16,9 +16,9 @@ const router = new Router({
 			component: Hoge
     },
     {
-			path: '/parent',
+			path: '/parenta',
 			name: 'parent-child',
-			component: Parent
+			component: ParentA
     },
     {
 			path: '/parentb',
