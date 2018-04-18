@@ -13,8 +13,16 @@ client.interceptors.request.use((ret) => {
 
 axiosRetry(client);
 Promise.all([
-  client.get('/count1', { axiosRetry: 3 }),
-  client.get('/count2', { axiosRetry: 3 })
+  client.get('/count1', {
+    'axios-retry': {
+      retries: 3
+    }
+  }),
+  client.get('/count2', {
+    'axios-retry': {
+      retries: 3
+    }
+  }),
 ]).then((ret) => {
   ret.forEach(inner => console.log(inner.data)) 
 })
