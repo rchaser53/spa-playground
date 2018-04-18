@@ -60,16 +60,28 @@ app.get('/article2', (req, res) => {
   })
 })
 
-let count = 0
-app.get('/count', (req, res) => {
-  if (count < 3) {
+let count1 = 0
+app.get('/count1', (req, res) => {
+  if (count1 < 3) {
     res.status(500);
-    console.log(count)
+    console.log('count1', count1)
     res.json({});
-    count++
+    count1++
     return
   }
-  res.json({ Date: Date.now()})
+  res.send('done count1')
+})
+
+let count2 = 0
+app.get('/count2', (req, res) => {
+  if (count2 < 3) {
+    res.status(500);
+    console.log('count2', count2)
+    res.json({});
+    count2++
+    return
+  }
+  res.send('done count2')
 })
 
 server.listen(3000, () => {

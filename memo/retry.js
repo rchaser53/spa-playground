@@ -7,24 +7,17 @@ const client = Axios.create({
 })
 
 client.interceptors.request.use((ret) => {
-  console.log(Date.now())
+  console.log(ret.url)
   return ret
 })
 
-axiosRetry(client, {
-  retries: 3,
-  retryDelay: axiosRetry.exponentialDelay
-});
-client.get('/count'
-// ,{
-//   'axios-retry': {
-//     retries: 2
-//   }
-// }
-)
-.then((ret) => {
-  console.log(ret.data)
+axiosRetry(client);
+Promise.all([
+  client.get('/count1', { axiosRetry: 3 }),
+  client.get('/count2', { axiosRetry: 3 })
+]).then((ret) => {
+  ret.forEach(inner => console.log(inner.data)) 
 })
-.catch(error => { // The first request fails
+.catch(error => {
   console.log('nyan')
 });
