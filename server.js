@@ -60,6 +60,17 @@ app.get('/article2', (req, res) => {
   })
 })
 
+let count = 0
+app.get('/count', (req, res) => {
+  if (count < 3) {
+    res.status(500);
+    console.log(count)
+    res.json({});
+    count++
+    return
+  }
+  res.json({ Date: Date.now()})
+})
 
 server.listen(3000, () => {
   console.log('run server')

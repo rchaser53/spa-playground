@@ -13,8 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "axios-retry": "^3.0.2",
     "cookie": "^0.3.1",
     "express": "^4.16.3",
+    "is-retry-allowed": "^1.1.0",
     "rxjs": "^5.5.10",
     "typescript": "^2.6.2",
     "vue": "^2.5.16",
