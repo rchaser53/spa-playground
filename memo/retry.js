@@ -7,10 +7,14 @@ const client = Axios.create({
 })
 
 client.interceptors.request.use((ret) => {
+  console.log(Date.now())
   return ret
 })
 
-axiosRetry(client, { retries: 3 });
+axiosRetry(client, {
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay
+});
 client.get('/count'
 // ,{
 //   'axios-retry': {
