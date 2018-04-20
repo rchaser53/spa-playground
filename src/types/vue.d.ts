@@ -1,9 +1,10 @@
 import Vue from 'vue'
-import { AxiosRequestConfig } from 'axios'
+import { AxiosRequestConfig, CancelTokenSource } from 'axios'
 
 declare module 'vue/types/vue' {
 	interface Vue {
-		apiGet: GlobalMixin.apiGet
+    apiGet: GlobalMixin.apiGet
+    cancelSource: CancelTokenSource
 	}
 }
 

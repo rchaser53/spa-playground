@@ -5,10 +5,12 @@ import router from './router'
 import store from './store/store'
 
 import App from './App.vue'
+import Global from './Global.vue'
 import Modal from './components/modal/Modal.vue'
 
 Vue.use(VueI18n)
 Vue.component('modal', Modal)
+Vue.mixin(Global)
 
 const i18n = new VueI18n({
   locale: 'ja',
@@ -32,7 +34,7 @@ new Vue({
   el: '#app',
   i18n,
 	router,
-	store,
+  store,
 	components: {
 		App
 	}

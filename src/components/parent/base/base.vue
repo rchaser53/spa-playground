@@ -1,5 +1,6 @@
 <script lang='ts'>
 import Vue from 'vue'
+import { CancelTokenSource } from 'axios'
 import Component, { mixins } from 'vue-class-component'
 
 import ParentTemplateMixin from './ParentTemplateMixin.vue'
@@ -13,7 +14,6 @@ export class Parent extends Vue {
     selectA: ''
   }
   articleEndpoint: string = ''
-  cancelToken: any
 
   createSetter(key: string) {
     return (value) => {
