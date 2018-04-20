@@ -1,7 +1,6 @@
 <script lang='ts'>
 import Vue from 'vue'
-import { CancelTokenSource } from 'axios'
-import Component, { mixins } from 'vue-class-component'
+import Component from 'vue-class-component'
 
 import ParentTemplateMixin from './ParentTemplateMixin.vue'
 import Child from '../../Child.vue'
@@ -14,6 +13,7 @@ export class Parent extends Vue {
     selectA: ''
   }
   articleEndpoint: string = ''
+  httpClient: any
 
   createSetter(key: string) {
     return (value) => {
@@ -22,7 +22,7 @@ export class Parent extends Vue {
   }
 }
 
-export const createClass = function(httpObj, overwriteDecorator = {}) {
+export const createClass = function(overwriteDecorator = {}) {
   const decoratorObj = {
     components: {
       Child,

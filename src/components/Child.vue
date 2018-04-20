@@ -20,7 +20,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-
 @Component({
   props: {
     createSetter: Function,

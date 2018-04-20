@@ -1,8 +1,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { CancelTokenSource } from 'axios'
-import { cancelToken } from './utils/http'
+import axios, { CancelTokenSource } from 'axios'
 
 
 @Component({
@@ -11,7 +10,7 @@ import { cancelToken } from './utils/http'
   }
 })
 export default class Global extends Vue {
-  cancelSource = cancelToken.source()
+  cancelSource = axios.CancelToken.source()
 }
 
 </script>
