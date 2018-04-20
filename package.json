@@ -28,6 +28,7 @@
   "devDependencies": {
     "@types/jest": "^22.2.0",
     "@types/node": "~8.0.53",
+    "axios-mock-adapter": "^1.15.0",
     "css-loader": "^0.28.10",
     "jest": "^22.4.2",
     "jest-serializer-vue": "^1.0.0",
