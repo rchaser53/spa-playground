@@ -1,10 +1,6 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
-const mock = new MockAdapter(axios);
-
-mock.onGet('/hoge').reply(500, {});
-
 const createHoge = (client) => {
   return (url) => {
     return client.get('/hoge')
@@ -13,15 +9,29 @@ const createHoge = (client) => {
                 })
   }
 }
-
-
 const _axios = axios.create();
 const hoge = createHoge(_axios)
 
-test('nyan', async () => {
-  try {
-    await hoge('aa')
-  } catch (err) {
-    expect(err).toEqual(new Error('err'));
-  }
+let mock = new MockAdapter(axios);
+describe('formatIdentifyValues', () => {
+  beforeEach(() => {
+    mock.reset();
+  })
+
+  test('error', async () => {
+    mock.onGet('/hoge').reply(500, {});
+    try {
+      await hoge('aa')
+    } catch (err) {
+      expect(err).toEqual(new Error('err'));
+    }
+  })
+
+  test('normal', async () => {
+    mock.onGet('/hoge').reply(200, {});
+    try {
+      const { data } = await hoge('aa')
+      expect(data).toEqual({});
+    } catch (err) {}
+  })
 })
