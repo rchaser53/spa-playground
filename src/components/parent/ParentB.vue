@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import { httpClient as serverAClient } from '../../http/serverA'
-import ParentTemplateMixin from './parent/ParentTemplateMixin.vue'
+import ParentTemplateMixin from './parent/ParentTemplateMixinB.vue'
 import Parent, { createClass } from './parent/Parent.vue'
 
 const diData = {
@@ -20,7 +20,8 @@ export const createDecoratorObj = (client, data) => {
         const { data } = await client.get(articleEndpoint);
         this.article = data;
       } catch (err) {
-        this.$emit('error', err)
+        this.emitEventBus('error', err)
+        this.emitEventBus('global-modal:open', 'hogya-')
       }
     },
     data(this: Parent) {

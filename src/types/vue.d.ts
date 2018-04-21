@@ -5,7 +5,8 @@ declare module 'vue/types/vue' {
 	interface Vue {
     apiGet: GlobalMixin.apiGet
     cancelSource: CancelTokenSource
-    eventhub: Vue
+    onEventBus: any
+    emitEventBus: any
 	}
 }
 

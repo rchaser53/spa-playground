@@ -1,14 +1,15 @@
 <template>
 	<div :class="$style.app">
 		<sidebar></sidebar>
-		<router-view  style="padding-left:100px;">
-		</router-view>
+		<router-view  style="padding-left:100px;"></router-view>
+    <global-modal></global-modal>
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Sidebar from './components/share/Sidebar.vue'
+import GlobalModal from './components/share/GlobalModal.vue'
 import Component from 'vue-class-component'
 import { mapActions, mapGetters } from 'vuex'
 import { VueConstructor } from 'vue/types/vue';
@@ -38,7 +39,8 @@ export type Haaa = VueConstructor<Vue>
 		])
   },
 	components: {
-		Sidebar
+    Sidebar,
+    GlobalModal
   },
   mounted() {
     this.$i18n.locale = 'en'

@@ -9,7 +9,6 @@ import Global from './mixins/Global.vue'
 import Modal from './components/modal/Modal.vue'
 
 Vue.use(VueI18n)
-Vue.component('modal', Modal)
 Vue.mixin(Global)
 
 const i18n = new VueI18n({

@@ -20,7 +20,8 @@ export const createDecoratorObj = (client, data) => {
         const { data } = await client.get(articleEndpoint);
         this.article = data;
       } catch (err) {
-        this.$emit('error', err)
+        this.emitEventBus('error', err)
+        this.emitEventBus('global-modal:open', 'hogya-')
       }
     },
     data(this: Parent) {
