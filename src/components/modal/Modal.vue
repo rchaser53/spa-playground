@@ -17,12 +17,6 @@ import VueI18n from 'vue-i18n'
 		show: Boolean,
 		onClose: Function
   },
-  // i18n: {
-  //   messages: {
-  //     en: { message: { hello: 'hello component1' } },
-  //     ja: { message: { hello: 'こんにちは、component1' } }
-  //   }
-  // }
 })
 export default class extends Vue {}
 </script>

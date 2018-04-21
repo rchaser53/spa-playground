@@ -30,6 +30,11 @@ export const createDecoratorObj = (client, data) => {
         ...data
       }
     },
+    methods: {
+      gubera(this: Parent) {
+        this.emitEventBus('error', 'Nya-n')
+      }
+    }
   }
 }
 const decoratorObject = createDecoratorObj(serverAClient, diData)
