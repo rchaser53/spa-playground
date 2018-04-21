@@ -5,7 +5,7 @@ import axios, { CancelTokenSource } from 'axios'
 
 @Component({
   mounted() {
-    this.$on('error', (err) => {
+    this.$once('error', (err) => {
       console.error(err)
     })
   },
