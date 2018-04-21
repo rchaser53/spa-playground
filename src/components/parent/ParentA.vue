@@ -11,7 +11,7 @@ export const createDecoratorObj = (client) => {
     mixins: [ ParentTemplateMixin ],
     mounted: async function(this: Parent) {
       try {
-        const { data } = await serverAClient.get(this.articleEndpoint, {
+        const { data } = await client.get(this.articleEndpoint, {
           cancelToken: this.cancelSource.token
         })
         this.article = data;
@@ -22,7 +22,7 @@ export const createDecoratorObj = (client) => {
     data() {
       return {
         articleEndpoint: '/article',
-        httpClient: serverAClient
+        httpClient: client
       }
     },
   }

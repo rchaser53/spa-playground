@@ -6,12 +6,18 @@ import { httpClient as serverAClient } from '../../http/serverA'
 import ParentTemplateMixin from './ParentTemplateMixin.vue'
 import Parent, { createClass } from './base/base.vue'
 
-export const createDecoratorObj = (client) => {
+const data = {
+  articleEndpoint: '/article',
+}
+
+export const createDecoratorObj = (client, data, vueClass) => {
+  const { articleEndpoint } = data
+
   return {
     mixins: [ ParentTemplateMixin ],
     mounted: async function(this: Parent) {
       try {
-        const { data } = await serverAClient.get(this.articleEndpoint, {
+        const { data } = await client.get(articleEndpoint, {
           cancelToken: this.cancelSource.token
         })
         this.article = data;
@@ -21,13 +27,12 @@ export const createDecoratorObj = (client) => {
     },
     data() {
       return {
-        articleEndpoint: '/article',
-        httpClient: serverAClient
+        httpClient: client
       }
     },
   }
 }
-const decoratorObject = createDecoratorObj(serverAClient)
+const decoratorObject = createDecoratorObj(serverAClient, data, Vue)
 export default createClass(decoratorObject)
 
 </script>
