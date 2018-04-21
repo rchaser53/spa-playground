@@ -5,7 +5,7 @@ import router from './router/router'
 import store from './store/store'
 
 import App from './App.vue'
-import Global from './Global.vue'
+import Global from './mixins/Global.vue'
 import Modal from './components/modal/Modal.vue'
 
 Vue.use(VueI18n)
