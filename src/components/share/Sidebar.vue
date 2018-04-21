@@ -3,7 +3,6 @@
 		<p><router-link to='hoge'>hoge</router-link></p>
     <p><router-link to='parentA'>parent A</router-link></p>
     <p><router-link to='parentB'>parent B</router-link></p>
-		<!-- {{thisPath}} -->
 	</div>
 </template>
 

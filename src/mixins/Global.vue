@@ -4,7 +4,7 @@ import Component from 'vue-class-component'
 import axios, { CancelTokenSource } from 'axios'
 import { cancelTokenSource } from '../http/serverA'
 
-export const createDecoratorObj = (client) => {
+export const createDecoratorObj = (client, data) => {
   return {
     mounted(this: Global) {
       this.$once('error', (err) => {
@@ -17,7 +17,7 @@ export const createDecoratorObj = (client) => {
   }
 }
 
-const decoratorObj = createDecoratorObj({})
+const decoratorObj = createDecoratorObj({}, {})
 @Component(decoratorObj)
 export default class Global extends Vue {
   cancelSource: CancelTokenSource = cancelTokenSource

@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Sidebar from './components/Sidebar.vue'
+import Sidebar from './components/share/Sidebar.vue'
 import Component from 'vue-class-component'
 import { mapActions, mapGetters } from 'vuex'
 import { VueConstructor } from 'vue/types/vue';

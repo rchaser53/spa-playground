@@ -2,21 +2,9 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
 import  { createDecoratorObj } from '../Global.vue'
-
 const data = {
   articleEndpoint: '/testPath'
 } 
-
-// {
-//   mounted(this: Global) {
-//     this.$once('error', (err) => {
-//       console.error(err)
-//     })
-//   },
-//   beforeDestroy(this: Global) {
-//     this.cancelSource.cancel('nya-n')
-//   },
-// }
 
 describe('Global for mixins', () => {
   test('mounted', async () => {

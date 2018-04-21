@@ -3,8 +3,8 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import { httpClient as serverAClient } from '../../http/serverA'
-import ParentTemplateMixin from './ParentTemplateMixin.vue'
-import Parent, { createClass } from './base/base.vue'
+import ParentTemplateMixin from './parent/ParentTemplateMixin.vue'
+import Parent, { createClass } from './parent/Parent.vue'
 
 const diData = {
   articleEndpoint: '/article',
@@ -23,7 +23,7 @@ export const createDecoratorObj = (client, data) => {
         this.$emit('error', err)
       }
     },
-    data() {
+    data(this: Parent) {
       return {
         httpClient: client,
         ...data
