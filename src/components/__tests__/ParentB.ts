@@ -44,11 +44,9 @@ describe('ParentB decoratorObj', () => {
     const fakeThis = {
       cancelSource: {},
       article: '',
-      eventhub: {
-        $emit: (key, object) => {
-          expect(key).toEqual('error');
-          expect(object).toEqual(errorObj);
-        }
+      $emit: (key, object) => {
+        expect(key).toEqual('error');
+        expect(object).toEqual(errorObj);
       }
     }
     const expected = {

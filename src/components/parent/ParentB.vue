@@ -22,7 +22,7 @@ export const createDecoratorObj = (client, data) => {
         })
         this.article = data;
       } catch (err) {
-        this.eventhub.$emit('error', err)
+        this.$emit('error', err)
       }
     },
     data(this: Parent) {

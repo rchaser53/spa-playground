@@ -16,7 +16,7 @@ export const createDecoratorObj = (client) => {
         })
         this.article = data;
       } catch (err) {
-        console.error(err)
+        this.$emit('error', err)
       }
     },
     data() {
