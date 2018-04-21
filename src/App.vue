@@ -1,12 +1,7 @@
 <template>
 	<div :class="$style.app">
-		<!-- <modal :show="isOpen" :onClose="closeLoading" ></modal> -->
-		<!-- <button @click="openModal">open</button> -->
-		<!-- <slot name="sidebar"></slot> -->
 		<sidebar></sidebar>
-    <!-- {{ $t("message.hello") }} -->
 		<router-view  style="padding-left:100px;">
-			<!-- <slot name="main"></slot> -->
 		</router-view>
 	</div>
 </template>
@@ -41,7 +36,7 @@ export type Haaa = VueConstructor<Vue>
 		...mapGetters('modal', [
 			'isOpen'
 		])
-	},
+  },
 	components: {
 		Sidebar
   },
