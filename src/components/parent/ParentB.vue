@@ -10,7 +10,7 @@ const data = {
   articleEndpoint: '/article',
 }
 
-export const createDecoratorObj = (client, data, vueClass) => {
+export const createDecoratorObj = (client, data) => {
   const { articleEndpoint } = data
 
   return {
@@ -22,17 +22,17 @@ export const createDecoratorObj = (client, data, vueClass) => {
         })
         this.article = data;
       } catch (err) {
-        console.error(err)
+        this.eventhub.$emit('error', err)
       }
     },
-    data() {
+    data(this: Parent) {
       return {
         httpClient: client
       }
     },
   }
 }
-const decoratorObject = createDecoratorObj(serverAClient, data, Vue)
+const decoratorObject = createDecoratorObj(serverAClient, data)
 export default createClass(decoratorObject)
 
 </script>

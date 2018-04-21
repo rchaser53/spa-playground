@@ -11,6 +11,7 @@ import axios, { CancelTokenSource } from 'axios'
 })
 export default class Global extends Vue {
   cancelSource = axios.CancelToken.source()
+  eventHandler = new Vue()
 }
 
 </script>

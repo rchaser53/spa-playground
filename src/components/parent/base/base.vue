@@ -5,15 +5,23 @@ import Component from 'vue-class-component'
 import ParentTemplateMixin from './ParentTemplateMixin.vue'
 import Child from '../../Child.vue'
 
+export interface IParent {
+	article: {
+    textA: string
+    textB: string
+    selectA: string
+  }
+  articleEndpoint: string
+}
+
 @Component
-export class Parent extends Vue {
+export class Parent extends Vue implements IParent {
   article = {
     textA: '',
     textB: '',
     selectA: ''
   }
   articleEndpoint: string = ''
-  httpClient: any
 
   createSetter(key: string) {
     return (value) => {
