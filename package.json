@@ -17,6 +17,7 @@
     "cookie": "^0.3.1",
     "express": "^4.16.3",
     "is-retry-allowed": "^1.1.0",
+    "moment": "^2.22.1",
     "rxjs": "^5.5.10",
     "typescript": "^2.6.2",
     "vue": "^2.5.16",
