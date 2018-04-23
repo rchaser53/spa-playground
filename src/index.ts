@@ -5,11 +5,9 @@ import router from './router/router'
 import store from './store/store'
 
 import App from './App.vue'
-import Global from './mixins/Global.vue'
 import Modal from './components/modal/Modal.vue'
 
 Vue.use(VueI18n)
-Vue.mixin(Global)
 
 const i18n = new VueI18n({
   locale: 'ja',

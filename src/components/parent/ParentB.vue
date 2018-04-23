@@ -8,39 +8,31 @@ import { addPageUtils } from '../../utils/page/addPageUtils'
 import ParentTemplateMixin from './parent/ParentTemplateMixinB.vue'
 import Parent, { createClass } from './parent/Parent.vue'
 
-const diData = {
-  articleEndpoint: '/article',
-}
-
-export const createDecoratorObj = (client, data) => {
-  const { articleEndpoint } = data
-
-  return {
-    mixins: [ ParentTemplateMixin ],
-    mounted: async function(this: Parent) {
-      try {
-        const { data } = await (this as any).httpClient.get(articleEndpoint);
-        this.article = data;
-      } catch (err) {
-        if (axios.isCancel(err)) return
-        this.emitEventBus('error', err)
-        this.emitEventBus('global-modal:open', 'hogya-')
+const decoratorInput = {
+  mixins: [ ParentTemplateMixin ],
+  mounted: async function(this: Parent) {
+    try {
+      const { data } = await this.httpClient.get(this.articleEndpoint);
+      this.article = data;
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        return
       }
-    },
-    data(this: Parent) {
-      return {
-        httpClient: client,
-        ...data
-      }
-    },
-    methods: {
-      gubera(this: Parent) {
-        this.emitEventBus('error', 'Nya-n')
-      }
+      this.emitEventBus('error', err)
+      this.emitEventBus('global-modal:open', 'hogya-')
     }
+  },
+  methods: {
+    gubera(this: Parent) {
+      this.emitEventBus('error', 'Nya-n')
+    }
+  },
+  data: {
+    articleEndpoint: '/article',
   }
 }
-const decoratorObject = addPageUtils(createDecoratorObj(httpClient, diData));
+
+const decoratorObject = addPageUtils(httpClient, decoratorInput)
 export default createClass(decoratorObject)
 
 </script>

@@ -11,9 +11,11 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import VueI18n from 'vue-i18n'
+import PageUtils from '../../utils/page/PageUtils.vue'
 
 @Component({
   name: 'GlobalModal',
+  mixins: [PageUtils],
   created(this: GlobalModal) {
     this.onEventBus('global-modal:open', this.open);
     this.onEventBus('global-modal:close', this.close);

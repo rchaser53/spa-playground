@@ -8,6 +8,7 @@ declare module 'vue/types/vue' {
     onEventBus: any
     onEventBusOnce: any
     emitEventBus: any
+    httpClient: any
 	}
 }
 
