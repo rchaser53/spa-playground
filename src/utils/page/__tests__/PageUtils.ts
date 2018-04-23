@@ -1,12 +1,12 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
-import  { createDecoratorObj } from '../Global.vue'
+import  { createDecoratorObj } from '../PageUtils.vue'
 const data = {
   articleEndpoint: '/testPath'
 } 
 
-describe('Global for mixins', () => {
+describe('PageUtils for mixins', () => {
   test('mounted', async () => {
     const client = {
       get() {

@@ -3,7 +3,8 @@ import axios from 'axios'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { httpClient } from '../../http/client'
+import { httpClient } from '../../utils/http/client'
+import { addPageUtils } from '../../utils/page/addPageUtils'
 import ParentTemplateMixin from './parent/ParentTemplateMixinB.vue'
 import Parent, { createClass } from './parent/Parent.vue'
 
@@ -39,7 +40,7 @@ export const createDecoratorObj = (client, data) => {
     }
   }
 }
-const decoratorObject = createDecoratorObj(httpClient, diData)
+const decoratorObject = addPageUtils(createDecoratorObj(httpClient, diData));
 export default createClass(decoratorObject)
 
 </script>
