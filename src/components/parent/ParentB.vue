@@ -1,8 +1,9 @@
 <script lang='ts'>
+import axios from 'axios'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import { httpClient as serverAClient } from '../../http/serverA'
+import { httpClient } from '../../http/client'
 import ParentTemplateMixin from './parent/ParentTemplateMixinB.vue'
 import Parent, { createClass } from './parent/Parent.vue'
 
@@ -17,9 +18,10 @@ export const createDecoratorObj = (client, data) => {
     mixins: [ ParentTemplateMixin ],
     mounted: async function(this: Parent) {
       try {
-        const { data } = await client.get(articleEndpoint);
+        const { data } = await (this as any).httpClient.get(articleEndpoint);
         this.article = data;
       } catch (err) {
+        if (axios.isCancel(err)) return
         this.emitEventBus('error', err)
         this.emitEventBus('global-modal:open', 'hogya-')
       }
@@ -37,7 +39,7 @@ export const createDecoratorObj = (client, data) => {
     }
   }
 }
-const decoratorObject = createDecoratorObj(serverAClient, diData)
+const decoratorObject = createDecoratorObj(httpClient, diData)
 export default createClass(decoratorObject)
 
 </script>

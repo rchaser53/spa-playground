@@ -6,6 +6,7 @@ declare module 'vue/types/vue' {
     apiGet: GlobalMixin.apiGet
     cancelSource: CancelTokenSource
     onEventBus: any
+    onEventBusOnce: any
     emitEventBus: any
 	}
 }

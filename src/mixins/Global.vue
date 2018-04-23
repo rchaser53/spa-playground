@@ -2,20 +2,24 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import axios, { CancelTokenSource } from 'axios'
-import { cancelTokenSource } from '../http/serverA'
+import { HttpClient } from '../http/client'
 import { eventBus } from './Eventhub'
 
-export const createDecoratorObj = (client, data) => {
+export const createDecoratorObj = (a, b) => {
   return {
     mounted(this: Global) {
-      this.onEventBus('error', (err) => {
+      this.httpClient.refreshToken();
+      this.onEventBusOnce('error', (err) => {
         console.error(err)
       })
     },
     beforeDestroy(this: Global) {
-      this.cancelSource.cancel('nya-n')
+      this.httpClient.cancelRequest();
     },
     methods: {
+      onEventBusOnce(key, func) {
+        eventBus.$once(key, func)
+      },
       onEventBus(key, func) {
         eventBus.$on(key, func)
       },
@@ -24,12 +28,12 @@ export const createDecoratorObj = (client, data) => {
       },
     }
   }
-}
+} 
 
 const decoratorObj = createDecoratorObj({}, {})
 @Component(decoratorObj)
 export default class Global extends Vue {
-  cancelSource: CancelTokenSource = cancelTokenSource
+  httpClient: HttpClient = new HttpClient(axios.create())
 }
 
 </script>
