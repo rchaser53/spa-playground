@@ -2,8 +2,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import ParentTemplateMixin from './ParentTemplateMixin.vue'
 import Child from './Child.vue'
+import { VueConstructor } from 'vue/types/vue';
 
 @Component
 export class Parent extends Vue {
@@ -21,17 +21,13 @@ export class Parent extends Vue {
   }
 }
 
-export const createClass = function(overwriteDecorator = {}) {
-  const decoratorObj = {
+export const createClass = function(MixinClass: VueConstructor) {
+  @Component({
     components: {
       Child,
-    },
-    ...overwriteDecorator
-    // data, components, methodなどを変更する予定
-  }
-
-  @Component(decoratorObj)
-  class Base extends Parent {}
+    }
+  })
+  class Base extends MixinClass {}
 
   return Base
 }
