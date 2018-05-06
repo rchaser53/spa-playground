@@ -6,6 +6,7 @@
     <div>
       <input v-model="textB" />
     </div>
+    <sfc nyan="111"></sfc>
     <div>
       <select :value="article.selectA" @change="setSelectA">
         <option value="1">1</option>
@@ -19,12 +20,16 @@
 <script lang='ts'>
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import Sfc from './Sfc.vue'
 
 @Component({
   props: {
     createSetter: Function,
     article: Object
   },
+  components: {
+    Sfc
+  }
 })
 export default class Child extends Vue {
   get textA() {
