@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import Child from './Child.vue'
+import Fc from './Fc.vue'
 import { VueConstructor } from 'vue/types/vue';
 
 @Component
@@ -25,6 +26,7 @@ export const createClass = function(MixinClass: VueConstructor) {
   @Component({
     components: {
       Child,
+      Fc
     }
   })
   class Base extends MixinClass {}
