@@ -2049,6 +2049,10 @@ domexception@^1.0.0:
   dependencies:
     webidl-conversions "^4.0.2"
 
+dumb-url-handler@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/dumb-url-handler/-/dumb-url-handler-1.2.1.tgz#05c8c6f06cdbb94e086261254a001d0c3cdbcd6d"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
