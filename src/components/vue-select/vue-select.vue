@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-select ref="vueSelect" multiple :options="options" :onChange="onChange"></vue-select>
+    <vue-select ref="vueSelect" multiple :options="options" v-model="selected"></vue-select>
     123
     <button @click="addOptions">add</button>
     <input type="text" v-model="text" />
@@ -22,7 +22,16 @@ export default class ParentA extends Vue {
   options = [
     'aaa', 'aab', 'aabc', 'aabcd'
   ]
-  selected: string[] = []
+  selectedOption: string[] = []
+
+  set selected(value) {
+    console.log(value)
+    this.selectedOption = value
+  }
+  get selected() {
+    console.log(this.selectedOption)
+    return this.selectedOption
+  }
   text = ''
 
   onChange(value) {
@@ -31,7 +40,7 @@ export default class ParentA extends Vue {
 
   addOptions() {
     this.options.push(this.text)
-    this.selected.push(this.text)
+    this.selectedOption = this.selectedOption.concat([this.text])
     this.$refs.vueSelect.search = ''
   }
 }
