@@ -1,9 +1,10 @@
 <template>
-	<div>
-		<p><router-link to='hoge'>hoge</router-link></p>
+  <div>
+    <p><router-link to='hoge'>hoge</router-link></p>
     <p><router-link to='parentA'>parent A</router-link></p>
     <p><router-link to='parentB'>parent B</router-link></p>
-	</div>
+    <p><router-link to='vue-select'>vue-select</router-link></p>
+  </div>
 </template>
 
 <script lang="ts">
