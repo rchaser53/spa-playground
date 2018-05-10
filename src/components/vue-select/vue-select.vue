@@ -4,6 +4,7 @@
     123
     <button @click="addOptions">add</button>
     <input type="text" v-model="text" />
+    <spinner />
   </div>
 </template>
 
@@ -12,9 +13,12 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import VueSelect from 'vue-select'
 
+import Spinner from '../share/Spinner.vue'
+
 @Component({
   components: {
-    VueSelect
+    VueSelect,
+    Spinner
   },
 })
 export default class ParentA extends Vue {

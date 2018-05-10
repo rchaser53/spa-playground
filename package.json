@@ -21,6 +21,7 @@
     "is-retry-allowed": "^1.1.0",
     "moment": "^2.22.1",
     "rxjs": "^5.5.10",
+    "spin.js": "^4.0.0",
     "typescript": "^2.6.2",
     "vue": "^2.5.16",
     "vue-class-component": "^6.2.0",
