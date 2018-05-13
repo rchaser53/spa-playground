@@ -18,6 +18,6 @@ storiesOf('Parent', module)
     template: '<parent-b></parent-b>'
   }))
   .add('connection error in parentA', () => ({
-    components: { ParentA: ErrorParentA },
-    template: '<parent-a></parent-a>'
+    components: { ErrorParentA },
+    template: '<error-parent-a />'
   }))

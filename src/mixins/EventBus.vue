@@ -11,6 +11,9 @@ const eventBus = new Vue();
     onEventBus(key, func) {
       eventBus.$on(key, func)
     },
+    offEventBus(key, func) {
+      eventBus.$off(key, func)
+    },
     emitEventBus(key, value) {
       eventBus.$emit(key, value)
     },

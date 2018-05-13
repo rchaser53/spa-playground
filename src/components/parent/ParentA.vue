@@ -9,10 +9,9 @@ import ParentTemplateMixin from './parent/ParentTemplateMixin.vue'
 import Parent, { createClass } from './parent/Parent.vue'
 import { VueConstructor } from 'vue/types/vue';
 
-
 export const insertUtilMixins = function(Mixins: VueConstructor[] = []) {
   @Component({
-    mixins: [ ParentTemplateMixin, EventBus, ...Mixins ],
+    mixins: [ EventBus, ParentTemplateMixin, ...Mixins ],
     mounted: async function(this: ParentA) {
       try {
         const { data } = await this.httpClient.get(this.articleEndpoint);
