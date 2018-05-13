@@ -3,14 +3,16 @@ import axios from 'axios'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import PageUtilsMixin from '../../mixins/PageUtils.vue'
+import HttpClient from '../../mixins/HttpClient.vue'
+import EventBus from '../../mixins/EventBus.vue'
 import ParentTemplateMixin from './parent/ParentTemplateMixin.vue'
 import Parent, { createClass } from './parent/Parent.vue'
 import { VueConstructor } from 'vue/types/vue';
 
+
 export const insertUtilMixins = function(Mixins: VueConstructor[] = []) {
   @Component({
-    mixins: [ ParentTemplateMixin, ...Mixins ],
+    mixins: [ ParentTemplateMixin, EventBus, ...Mixins ],
     mounted: async function(this: ParentA) {
       try {
         const { data } = await this.httpClient.get(this.articleEndpoint);
@@ -32,7 +34,7 @@ export const insertUtilMixins = function(Mixins: VueConstructor[] = []) {
 }
 
 export default createClass(insertUtilMixins([
-  PageUtilsMixin,
+  HttpClient,
 ]))
 
 </script>

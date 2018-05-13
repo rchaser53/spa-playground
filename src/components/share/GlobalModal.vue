@@ -12,7 +12,8 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import VueI18n from 'vue-i18n'
 
-import PageUtilsMixin from '../../mixins/PageUtils.vue'
+import HttpClient from '../../mixins/HttpClient.vue'
+import EventBus from '../../mixins/EventBus.vue'
 import { VueConstructor } from 'vue/types/vue';
 
 export const insertUtilMixins = function(Mixins: VueConstructor[] = []) {
@@ -42,7 +43,7 @@ export const insertUtilMixins = function(Mixins: VueConstructor[] = []) {
 }
 
 export default insertUtilMixins([
-  PageUtilsMixin
+  HttpClient, EventBus
 ])
 
 </script>
