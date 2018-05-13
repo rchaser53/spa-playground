@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --port 3100",
+    "storybook": "start-storybook -p 21000 -c .storybook",
     "format": "./node_modules/.bin/prettier --write \"src/**/*.{ts,html,vue}\"",
     "test": "jest --no-cache",
     "json-server": "json-server --watch db.json --port 3200"
@@ -13,6 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@storybook/cli": "4.0.0-alpha.4",
+    "@storybook/vue": "4.0.0-alpha.4",
     "axios": "^0.18.0",
     "axios-retry": "^3.0.2",
     "cookie": "^0.3.1",

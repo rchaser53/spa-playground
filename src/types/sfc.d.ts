@@ -6,4 +6,5 @@ declare module '*.vue' {
   export function createClass(diObj: any): any
   export function createDecoratorObj(client: any, data: any): any
   export function insertUtilMixins(MixinClasses: VueConstructor[]): any
+  export function insertMockHttpClient(httpClient): any
 }

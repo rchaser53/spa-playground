@@ -11,29 +11,40 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import VueI18n from 'vue-i18n'
-import PageUtils from '../../utils/page/PageUtils.vue'
 
-@Component({
-  name: 'GlobalModal',
-  mixins: [PageUtils],
-  created(this: GlobalModal) {
-    this.onEventBus('global-modal:open', this.open);
-    this.onEventBus('global-modal:close', this.close);
-  }
-})
-export default class GlobalModal extends Vue {
-  show: boolean =  false
-  message: string = ''
+import PageUtilsMixin from '../../mixins/PageUtils.vue'
+import { VueConstructor } from 'vue/types/vue';
 
-  open(message) {
-    this.show = true
-    this.message = message
+export const insertUtilMixins = function(Mixins: VueConstructor[] = []) {
+  @Component({
+    mixins: Mixins,
+    name: 'GlobalModal',
+    created(this: GlobalModal) {
+      this.onEventBus('global-modal:open', this.open);
+      this.onEventBus('global-modal:close', this.close);
+    }
+  })
+  class GlobalModal extends Vue {
+    show: boolean =  false
+    message: string = ''
+
+    open(message) {
+      this.show = true
+      this.message = message
+    }
+
+    close() {
+      this.show = false
+    }
   }
 
-  close() {
-    this.show = false
-  }
+  return GlobalModal
 }
+
+export default insertUtilMixins([
+  PageUtilsMixin
+])
+
 </script>
 
 <style module>
