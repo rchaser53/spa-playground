@@ -3,36 +3,40 @@ import axios from 'axios'
 import Vue from 'vue'
 import Component, { mixins } from 'vue-class-component'
 
-import { httpClient } from '../../utils/http/client'
-import { addPageUtils } from '../../utils/page/addPageUtils'
+import PageUtilsMixin from '../../mixins/PageUtils.vue'
 import ParentTemplateMixin from './parent/ParentTemplateMixinB.vue'
 import Parent, { createClass } from './parent/Parent.vue'
+import { VueConstructor } from 'vue/types/vue';
 
-const decoratorObject = addPageUtils(httpClient, {
-  mixins: [ ParentTemplateMixin ],
-  mounted: async function(this: ParentA) {
-    try {
-      const { data } = await this.httpClient.get(this.articleEndpoint);
-      this.article = data;
-    } catch (err) {
-      if (axios.isCancel(err)) {
-        return
+export const insertUtilMixins = function(Mixins: VueConstructor[] = []) {
+  @Component({
+    mixins: Mixins,
+    mounted: async function(this: ParentA) {
+      try {
+        const { data } = await this.httpClient.get(this.articleEndpoint);
+        this.article = data;
+      } catch (err) {
+        if (axios.isCancel(err)) {
+          return
+        }
+        this.emitEventBus('error', err)
+        this.emitEventBus('global-modal:open', 'hogya-')
       }
-      this.emitEventBus('error', err)
-      this.emitEventBus('global-modal:open', 'hogya-')
+    }
+  })
+  class ParentA extends Parent {
+    articleEndpoint = '/article'
+
+    gubera() {
+      this.emitEventBus('error', 'Nya-n')
     }
   }
-})
 
-@Component(decoratorObject)
-class ParentA extends Parent {
-  articleEndpoint = '/article'
-
-  gubera(this: Parent) {
-    this.emitEventBus('error', 'Nya-n')
-  }
+  return ParentA
 }
 
-export default createClass(mixins(ParentA))
+export default createClass(insertUtilMixins([
+  PageUtilsMixin, ParentTemplateMixin
+]))
 
 </script>

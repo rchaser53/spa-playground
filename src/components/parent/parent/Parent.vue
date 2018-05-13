@@ -1,13 +1,13 @@
 <script lang='ts'>
 import Vue from 'vue'
-import Component from 'vue-class-component'
+import Component, { mixins } from 'vue-class-component'
 
 import Child from './Child.vue'
 import Fc from './Fc.vue'
 import { VueConstructor } from 'vue/types/vue';
 
 @Component
-export class Parent extends Vue {
+export class Base extends Vue {
   article = {
     textA: '',
     textB: '',
@@ -29,10 +29,10 @@ export const createClass = function(MixinClass: VueConstructor) {
       Fc
     }
   })
-  class Base extends MixinClass {}
+  class Parent extends mixins(Base, MixinClass) {}
 
-  return Base
+  return Parent
 }
 
-export default Parent
+export default Base
 </script>
