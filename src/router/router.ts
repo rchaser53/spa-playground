@@ -3,7 +3,8 @@ import Router from 'vue-router'
 
 import { HogeRoutes } from './hoge/hoge' 
 import { ParentRoutes } from './parent/parent' 
-import { VueSelectRoutes } from './vue-select/vue-select' 
+import { VueSelectRoutes } from './vue-select/vue-select'
+import { VueScrollRoutes } from './vue-scroll/vue-scroll'
 
 Vue.use(Router)
 
@@ -13,6 +14,7 @@ const router = new Router({
     ...HogeRoutes,
     ...ParentRoutes,
     ...VueSelectRoutes,
+    ...VueScrollRoutes,
 		{
 			path: '/*',
 			name: 'error',
