@@ -25,3 +25,19 @@ export const ParentA = createClass(
 export const ParentB = createClass(
   insertToParentB([ NormalMixinClass ])
 )
+
+const createErrorMixin = () => {
+  const mockClient = {
+    get() {
+      return Promise.reject({
+        status: 500
+      })
+    }
+  }
+  return insertMockHttpClient(mockClient)
+}
+
+const ErrorMixinClass = createErrorMixin()
+export const ErrorParentA = createClass(
+  insertToParentA([ ErrorMixinClass ])
+)
