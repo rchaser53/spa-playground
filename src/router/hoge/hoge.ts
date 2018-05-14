@@ -1,4 +1,4 @@
-import Hoge from '../../components/hoge/Hoge.vue'
+import Hoge from '~components/hoge/Hoge.vue'
 
 export const HogeRoutes =	[
   {
