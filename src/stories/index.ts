@@ -1,23 +1,14 @@
 import Vue from 'vue';
 
 import { storiesOf } from '@storybook/vue';
-import {
-  ParentA,
-  ParentB,
-  ErrorParentA,
-} from './parent';
+import Parent from './parent';
 
-
-storiesOf('Parent', module)
-  .add('render parentA', () => ({
-    components: { ParentA },
-    template: '<parent-a></parent-a>'
-  }))
-  .add('render ParentB', () => ({
-    components: { ParentB },
-    template: '<parent-b></parent-b>'
-  }))
-  .add('connection error in parentA', () => ({
-    components: { ErrorParentA },
-    template: '<error-parent-a />'
-  }))
+class StoryBookHandler {
+  add(componentName: string, addStories) {
+    this[componentName] = storiesOf(componentName, module);
+    addStories(this[componentName]);
+    return this;
+  }
+}
+const storyBookHandler = new StoryBookHandler();
+storyBookHandler.add('Parent', Parent);
