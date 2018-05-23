@@ -1,8 +1,8 @@
-import { createClass } from '../components/parent/parent/Parent.vue'
-import { insertUtilMixins as insertToParentA } from '../components/parent/ParentA.vue'
-import { insertUtilMixins as insertToParentB } from '../components/parent/ParentB.vue'
-import { insertMockHttpClient } from './utils/mockHttpClient.vue'
-import MockErrorHandler from './utils/mockErrorHandler.vue'
+import { createClass } from '~src/components/parent/parent/Parent.vue'
+import { insertUtilMixins as insertToParentA } from '~src/components/parent/ParentA.vue'
+import { insertUtilMixins as insertToParentB } from '~src/components/parent/ParentB.vue'
+import { insertMockHttpClient } from '~src/stories/mixins/mockHttpClient.vue'
+import MockErrorHandler from '~src/stories/mixins/mockErrorHandler.vue'
 
 const createNomalMixin = () => {
   const mockClient = {

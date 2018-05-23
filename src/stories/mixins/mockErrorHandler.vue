@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import EventBus from '../../mixins/EventBus.vue'
+import EventBus from '~src/mixins/EventBus.vue'
 
 @Component({
   mounted(this: EventBus) {

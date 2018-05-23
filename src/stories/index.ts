@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 import { storiesOf } from '@storybook/vue';
-import Parent from './parent';
+import Parent from './components/parent/parent';
 
 class StoryBookHandler {
   add(componentName: string, addStories) {
