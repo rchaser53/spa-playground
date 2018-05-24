@@ -5,10 +5,12 @@ const eventBus = new Vue();
 
 @Component({
   methods: {
-    onEventBusOnce(key, func) {
+    onEventBusOnce(this: any, key, func) {
+      this.emitKeys.push(key);
       eventBus.$once(key, func)
     },
-    onEventBus(key, func) {
+    onEventBus(this: any, key, func) {
+      this.emitKeys.push(key);
       eventBus.$on(key, func)
     },
     offEventBus(key, func) {
@@ -17,8 +19,15 @@ const eventBus = new Vue();
     emitEventBus(key, value) {
       eventBus.$emit(key, value)
     },
+  },
+  beforeDestroy(this: EventBus) {
+    this.emitKeys.forEach((key) => {
+      this.offEventBus(key);
+    })
   }
 })
-export default class EventBus extends Vue {}
+export default class EventBus extends Vue {
+  emitKeys: string[] = []
+}
 
 </script>
