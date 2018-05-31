@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-select ref="vueSelect" multiple :options="options" v-model="selected"></vue-select>
+    <vue-select ref="vueSelect" multiple :on-search="debounceConnect" :options="options" v-model="selected"></vue-select>
     123
     <button @click="addOptions">add</button>
     <input type="text" v-model="text" />
@@ -12,6 +12,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import VueSelect from 'vue-select'
+import debounce from 'lodash.debounce'
 
 import Spinner from '../share/Spinner.vue'
 
@@ -37,6 +38,12 @@ export default class ParentA extends Vue {
     return this.selectedOption
   }
   text = ''
+
+  get debounceConnect() {
+    return debounce((ho, ge) => {
+      console.log(ho, '---', ge)
+    }, 500)
+  }
 
   onChange(value) {
     this.selected = value
