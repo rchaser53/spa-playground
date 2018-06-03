@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import * as VueServerRenderer from 'vue-server-renderer'
-import Modal from '../modal/Modal.vue'
+import SimpleMde from '../simple-mde/simple-mde.vue'
 
 const renderer = VueServerRenderer.createRenderer()
 
@@ -15,12 +15,14 @@ const render = (vm) => {
   })
 }
 
-test('render modal', () => {
+test('render simple-mde', () => {
   const vm = new Vue({
     el: document.createElement('div'),
-    render: (h) => h(Modal)
+    render: (h) => {
+      h('div', SimpleMde)
+    }
   })
 
-  expect(vm).toMatchSnapshot()
+	expect(vm).toMatchSnapshot()
 
 })
