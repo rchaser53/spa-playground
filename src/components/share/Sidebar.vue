@@ -5,6 +5,7 @@
     <p><router-link to='parentB'>parent B</router-link></p>
     <p><router-link to='vue-select'>vue-select</router-link></p>
     <p><router-link to='vue-scroll'>vue-scroll</router-link></p>
+    <p><router-link to='simple-mde'>simple-mde</router-link></p>
   </div>
 </template>
 
