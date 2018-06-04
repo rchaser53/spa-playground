@@ -1,7 +1,8 @@
 const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const TsLintConfig = {
-  fix: true,
+  fix: false,
   configFile: 'tslint.json',
 };
 const VueTsLintConfig = {
@@ -41,6 +42,21 @@ module.exports = {
       }
     },
     {
+      test: /\.css$/,
+      use: [
+        {
+          loader: 'vue-style-loader'
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            localIdentName: '[local]_[hash:base64:8]'
+          }
+        }
+      ]
+    },
+    {
       test: /\.vue$/,
       loader: 'vue-loader',
       options: {
@@ -62,5 +78,8 @@ module.exports = {
 		port: 3000,
 		host: "localhost",
 	},
-	devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  plugins: [
+    new VueLoaderPlugin()
+  ],
 };

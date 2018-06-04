@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="spinner"></div>
+    <div id='spinner'></div>
     <button @click="spin">spin</button>
   </div>
 </template>
