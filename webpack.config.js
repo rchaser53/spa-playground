@@ -1,13 +1,5 @@
 const path = require('path');
-
-const TsLintConfig = {
-  fix: true,
-  configFile: 'tslint.json',
-};
-const VueTsLintConfig = {
-  ...TsLintConfig,
-  fix: false,
-};
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   mode: 'development',
@@ -26,13 +18,6 @@ module.exports = {
 	module: {
 		rules: [
     {
-      enforce: 'pre',
-      test: /\.ts$/,
-      loader: 'tslint-loader',
-      exclude: /(node_modules)/,
-      options: TsLintConfig,
-    },
-    {
       test: /\.ts$/,
       exclude: /node_modules|vue\/src/,
       loader: 'ts-loader',
@@ -41,15 +26,26 @@ module.exports = {
       }
     },
     {
+      test: /\.css$/,
+      use: [
+        {
+          loader: 'vue-style-loader'
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            localIdentName: '[local]_[hash:base64:8]'
+          }
+        }
+      ]
+    },
+    {
       test: /\.vue$/,
       loader: 'vue-loader',
       options: {
         loaders: {
           ts: 'ts-loader',
-
-        },
-        preLoaders: {
-          ts: `tslint-loader?${JSON.stringify(VueTsLintConfig)}`,
         },
       }
     }]
@@ -62,5 +58,8 @@ module.exports = {
 		port: 3000,
 		host: "localhost",
 	},
-	devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  plugins: [
+    new VueLoaderPlugin()
+  ],
 };
