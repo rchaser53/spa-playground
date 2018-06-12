@@ -1,4 +1,5 @@
 const path = require("path");
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.resolve.extensions.push(".ts");
@@ -21,13 +22,14 @@ module.exports = (baseConfig, env, defaultConfig) => {
   })
 
   const vueLoader = defaultConfig.module.rules.find((rule) => {
-    return rule.loader.includes('vue-loader')
+    return rule.test.test('.vue')
   });
   vueLoader.options = {
     loaders: {
       ts: 'ts-loader',
     }
   }
+  baseConfig.plugins.push(new VueLoaderPlugin())
 
   return defaultConfig;
 };
