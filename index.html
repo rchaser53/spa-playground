@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script>
-      window.onload = () => {
-        document.querySelector('.test-class').addEventListener('click', () => {
-          console.log(123)
-        })
-      }
-    </script>
-
-  </head>
   <body>
     <div id="app">
-			<app>
-				<!-- <div slot="sidebar" style="display:block; width: 250px; background-color: green;">
-					<p><router-link to="hoge">hoge2</router-link></p>
-					<p><router-link to="fuga">fuga</router-link></p>
-					<p><router-link to="google.com">gooooo</router-link></p>
-					<p><a id="hoge" href="https://google.com">aaaa</a></p>
-				</div> -->
-				<div slot="main" style="display:block; width: 500px; background-color: red;">
-					aaa
-				</div>
-			</app>
-		</div>
+      <app>
+        <!-- <div slot="sidebar" style="display:block; width: 250px; background-color: green;">
+          <p><router-link to="hoge">hoge2</router-link></p>
+          <p><router-link to="fuga">fuga</router-link></p>
+          <p><router-link to="google.com">gooooo</router-link></p>
+          <p><a id="hoge" href="https://google.com">aaaa</a></p>
+        </div> -->
+        <div slot="main" style="display:block; width: 500px; background-color: red;">
+          aaa
+        </div>
+
+      </app>
+
+        <button class="test-class">test</button>
+    </div>
     <div id="modal"></div>
-		<script src="/bundle.js"></script>
-		<!-- <script>
-			window.onload = () => {
-				document.querySelector('#hoge').addEventListener('click', (e) => {
-					console.log(123)
-				})
-			}
-		</script> -->
+    <!--
+      bundle.jsの実行後に実行すればaddEventListenrできる
+      実行前だとできない。おそらくvue.jsによってhtmlタグが再生成されているため
+     -->
+    <script>
+      (() => {
+        const target = document.querySelector('.test-class')
+        if (target == null) return
+        target.addEventListener('click', () => {
+          console.log(123)
+        })
+      })()
+    </script>
+    <script src="/bundle.js"></script>
   </body>
 </html>
