@@ -15,5 +15,4 @@ export const insertMockHttpClient = function(client) {
 export default class Base extends Vue {
   httpClient
 }
-
 </script>

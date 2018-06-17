@@ -14,23 +14,23 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component({
-	name: 'Modal',
-	props: {
-		show: Boolean,
-		onClose: Function
-	},
-	mounted(this: Sidebar) {
-		this.$router.beforeEach((to, _ , next) => {
-			this.currentPath = to.path
-			next();
-		})
-	},
+  name: 'Modal',
+  props: {
+    show: Boolean,
+    onClose: Function
+  },
+  mounted(this: Sidebar) {
+    this.$router.beforeEach((to, _, next) => {
+      this.currentPath = to.path
+      next()
+    })
+  }
 })
 export default class Sidebar extends Vue {
-	currentPath = 'aa'
+  currentPath = 'aa'
 
-	get thisPath() {
-		return `here is :${this.currentPath}`
-	}
+  get thisPath() {
+    return `here is :${this.currentPath}`
+  }
 }
 </script>

@@ -4,7 +4,7 @@ import Component, { mixins } from 'vue-class-component'
 
 import Child from './Child.vue'
 import Fc from './Fc.vue'
-import { VueConstructor } from 'vue/types/vue';
+import { VueConstructor } from 'vue/types/vue'
 
 @Component
 export class Base extends Vue {

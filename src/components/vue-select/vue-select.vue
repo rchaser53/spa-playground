@@ -20,13 +20,11 @@ import Spinner from '../share/Spinner.vue'
   components: {
     VueSelect,
     Spinner
-  },
+  }
 })
 export default class ParentA extends Vue {
   $refs: any
-  options = [
-    'aaa', 'aab', 'aabc', 'aabcd'
-  ]
+  options = ['aaa', 'aab', 'aabc', 'aabcd']
   selectedOption: string[] = []
 
   set selected(value) {
@@ -55,5 +53,4 @@ export default class ParentA extends Vue {
     this.$refs.vueSelect.search = ''
   }
 }
-
 </script>

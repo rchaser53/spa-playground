@@ -12,32 +12,32 @@ import Component from 'vue-class-component'
 import VueI18n from 'vue-i18n'
 
 @Component({
-	name: 'Modal',
-	props: {
-		show: Boolean,
-		onClose: Function
-  },
+  name: 'Modal',
+  props: {
+    show: Boolean,
+    onClose: Function
+  }
 })
 export default class extends Vue {}
 </script>
 
 <style module>
 .modal {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	display: block;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	opacity: 0.1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.1;
 }
 
 .frame {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 </style>

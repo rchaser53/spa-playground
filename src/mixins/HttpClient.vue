@@ -6,17 +6,16 @@ import { httpClient } from '../utils/http/client'
 
 @Component({
   mounted(this: HttpClient) {
-    this.httpClient.refreshToken();
+    this.httpClient.refreshToken()
     this.onEventBusOnce('error', (err) => {
       console.error(err)
     })
   },
   beforeDestroy(this: HttpClient) {
-    this.httpClient.cancelRequest();
-  },
+    this.httpClient.cancelRequest()
+  }
 })
 export default class HttpClient extends Vue {
   httpClient = httpClient
 }
-
 </script>

@@ -12,33 +12,29 @@ import Sidebar from './components/share/Sidebar.vue'
 import GlobalModal from './components/share/GlobalModal.vue'
 import Component from 'vue-class-component'
 import { mapActions, mapGetters } from 'vuex'
-import { VueConstructor } from 'vue/types/vue';
+import { VueConstructor } from 'vue/types/vue'
 
 export interface IApp {
-	hongya: number
+  hongya: number
 }
 namespace VueConstructor {
-	type hongya = number
+  type hongya = number
 }
 export type Haaa = VueConstructor<Vue>
 
 @Component({
-	methods: {
-		...mapActions('modal', {
-			openModal(this: Haaa, dispatch) {
-				dispatch('CONFIRM')
-			}
-		}),
-		...mapActions('modal', [
-			'closeLoading', 'openModal'
-		]),
-	},
-	computed: {
-		...mapGetters('modal', [
-			'isOpen'
-		])
+  methods: {
+    ...mapActions('modal', {
+      openModal(this: Haaa, dispatch) {
+        dispatch('CONFIRM')
+      }
+    }),
+    ...mapActions('modal', ['closeLoading', 'openModal'])
   },
-	components: {
+  computed: {
+    ...mapGetters('modal', ['isOpen'])
+  },
+  components: {
     Sidebar,
     GlobalModal
   },
@@ -47,13 +43,13 @@ export type Haaa = VueConstructor<Vue>
   }
 })
 export default class App extends Vue implements IApp {
-	hongya = 23
+  hongya = 23
 }
 </script>
 
 <style module>
 .app {
-	display: flex;
-	width: 100%;
+  display: flex;
+  width: 100%;
 }
 </style>

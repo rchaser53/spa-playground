@@ -1,6 +1,6 @@
 import Hoge from '~components/hoge/Hoge.vue'
 
-export const HogeRoutes =	[
+export const HogeRoutes = [
   {
     path: '/hoge',
     name: 'hoge',

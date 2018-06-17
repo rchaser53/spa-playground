@@ -13,8 +13,8 @@ import SimpleMdeClass from 'simplemde'
 @Component({
   mounted(this: SimpleMde) {
     this.simpleMde = new SimpleMdeClass({
-                      element: document.querySelector('#simple-mde')
-                    })
+      element: document.querySelector('#simple-mde')
+    })
   }
 })
 export default class SimpleMde extends Vue {

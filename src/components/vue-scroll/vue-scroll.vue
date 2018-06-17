@@ -9,19 +9,17 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue';
+import Vue from 'vue'
 import Component from 'vue-class-component'
-import infiniteScroll from 'vue-infinite-scroll';
+import infiniteScroll from 'vue-infinite-scroll'
 
 @Component({
   directives: {
-    infiniteScroll,
-  },
+    infiniteScroll
+  }
 })
 export default class Scroll extends Vue {
-  options = [
-    'aaa', 'aab', 'aabc', 'aabcd'
-  ]
+  options = ['aaa', 'aab', 'aabc', 'aabcd']
 
   loadMore() {
     this.options.push(Date.now().toString())
@@ -30,27 +28,27 @@ export default class Scroll extends Vue {
 </script>
 
 <style>
-  .wrapper {
-    display: block;
-    width: 300px;
-    height: 400px;
-    overflow-y: scroll;
-    overflow-x: visible;
-  }
+.wrapper {
+  display: block;
+  width: 300px;
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: visible;
+}
 
-  .option {
-    display: block;
-    width: 300px;
-    height: 100px;
-    border: solid 1px black;
-    background-color: aqua;
-  }
+.option {
+  display: block;
+  width: 300px;
+  height: 100px;
+  border: solid 1px black;
+  background-color: aqua;
+}
 
-  .innerOption {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-  }
+.innerOption {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 </style>

@@ -11,5 +11,5 @@ export const ParentRoutes = [
     path: '/parentB',
     name: 'parentB-child',
     component: ParentB
-  },
+  }
 ]

@@ -14,5 +14,4 @@ export default class Parent extends Vue {
     console.log(this)
   }
 }
-
 </script>

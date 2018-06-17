@@ -18,9 +18,7 @@ import EventBus from '~src/mixins/EventBus.vue'
   beforeDestroy(this: EventBus) {
     this.offEventBus('error')
     this.offEventBus('global-modal:open')
-  },
+  }
 })
-export default class Base extends EventBus {
-}
-
+export default class Base extends EventBus {}
 </script>

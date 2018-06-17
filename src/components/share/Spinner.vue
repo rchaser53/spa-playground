@@ -8,7 +8,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import {Spinner} from 'spin.js'
+import { Spinner } from 'spin.js'
 const opts = {
   lines: 17, // The number of lines to draw
   length: 38, // The length of each line
@@ -20,7 +20,7 @@ const opts = {
   // fadeColor: 'transparent', // CSS color or array of colors
   speed: 1, // Rounds per second
   // rotate: 0, // The rotation offset
-  animation: 'spinner-line-fade-quick', // The CSS animation name for the lines
+  animation: 'spinner-line-fade-quick' // The CSS animation name for the lines
   // direction: 1, // 1: clockwise, -1: counterclockwise
   // zIndex: 2e9, // The z-index (defaults to 2000000000)
   // className: 'spinner', // The CSS class to assign to the spinner
@@ -28,18 +28,15 @@ const opts = {
   // // left: '50%', // Left position relative to parent
   // shadow: '0 0 1px transparent', // Box-shadow for the lines
   // // position: 'absolute' // Element positioning
-};
+}
 
-
-
-@Component({
-})
+@Component({})
 export default class SpinnerVue extends Vue {
   spinner = new Spinner(opts)
 
   spin() {
-    const $spinner = document.querySelector('#spinner') as HTMLElement;
-    this.spinner.spin($spinner);
+    const $spinner = document.querySelector('#spinner') as HTMLElement
+    this.spinner.spin($spinner)
 
     // setTimeout(() => {
     //   this.stop()
@@ -47,14 +44,15 @@ export default class SpinnerVue extends Vue {
   }
 
   stop() {
-    this.spinner.stop();
+    this.spinner.stop()
   }
 }
 </script>
 
 <style>
 @keyframes spinner-line-fade-more {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0; /* minimum opacity */
   }
   1% {
@@ -63,7 +61,9 @@ export default class SpinnerVue extends Vue {
 }
 
 @keyframes spinner-line-fade-quick {
-  0%, 39%, 100% {
+  0%,
+  39%,
+  100% {
     opacity: 0.25; /* minimum opacity */
   }
   40% {
@@ -72,7 +72,8 @@ export default class SpinnerVue extends Vue {
 }
 
 @keyframes spinner-line-fade-default {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.22; /* minimum opacity */
   }
   1% {

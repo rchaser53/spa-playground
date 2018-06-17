@@ -20,12 +20,8 @@ const createNomalMixin = () => {
 }
 
 const NormalMixinClass = createNomalMixin()
-export const ParentA = createClass(
-  insertToParentA([ NormalMixinClass ])
-)
-export const ParentB = createClass(
-  insertToParentB([ NormalMixinClass ])
-)
+export const ParentA = createClass(insertToParentA([NormalMixinClass]))
+export const ParentB = createClass(insertToParentB([NormalMixinClass]))
 
 const createErrorMixin = () => {
   const mockClient = {
@@ -39,22 +35,20 @@ const createErrorMixin = () => {
 }
 
 const ErrorMixinClass = createErrorMixin()
-export const ErrorParentA = createClass(
-  insertToParentA([ MockErrorHandler, ErrorMixinClass ])
-)
+export const ErrorParentA = createClass(insertToParentA([MockErrorHandler, ErrorMixinClass]))
 
 export default (storiesOf) => {
   return storiesOf
-          .add('render parentA', () => ({
-            components: { ParentA },
-            template: '<parent-a></parent-a>'
-          }))
-          .add('render ParentB', () => ({
-            components: { ParentB },
-            template: '<parent-b></parent-b>'
-          }))
-          .add('connection error in parentA', () => ({
-            components: { ErrorParentA },
-            template: '<error-parent-a />'
-          }))
+    .add('render parentA', () => ({
+      components: { ParentA },
+      template: '<parent-a></parent-a>'
+    }))
+    .add('render ParentB', () => ({
+      components: { ParentB },
+      template: '<parent-b></parent-b>'
+    }))
+    .add('connection error in parentA', () => ({
+      components: { ErrorParentA },
+      template: '<error-parent-a />'
+    }))
 }

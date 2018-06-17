@@ -30,9 +30,9 @@ const i18n = new VueI18n({
 new Vue({
   el: '#app',
   i18n,
-	router,
+  router,
   store,
-	components: {
-		App
-	}
+  components: {
+    App
+  }
 })

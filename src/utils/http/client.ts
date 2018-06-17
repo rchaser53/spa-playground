@@ -1,6 +1,4 @@
-import axios, {
-  CancelTokenStatic, CancelTokenSource, AxiosInstance
-} from 'axios'
+import axios, { CancelTokenStatic, CancelTokenSource, AxiosInstance } from 'axios'
 
 export class HttpClient {
   private client: AxiosInstance
@@ -14,7 +12,7 @@ export class HttpClient {
   }
 
   refreshToken() {
-    this.cancelTokenSource = this.cancelToken.source();
+    this.cancelTokenSource = this.cancelToken.source()
   }
 
   cancelRequest() {
@@ -26,6 +24,8 @@ export class HttpClient {
   }
 }
 
-export const httpClient = new HttpClient(axios.create({
-  baseURL: 'http://localhost:3000',
-}))
+export const httpClient = new HttpClient(
+  axios.create({
+    baseURL: 'http://localhost:3000'
+  })
+)

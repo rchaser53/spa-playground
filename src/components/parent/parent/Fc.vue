@@ -2,10 +2,8 @@
 import Vue from 'vue'
 
 export default Vue.component('fc', {
-  render: function (createElement) {
-    return (this.$props.hoge % 2 === 0)
-      ? createElement('div', 'even')
-      : createElement('div', 'odd');
+  render: function(createElement) {
+    return this.$props.hoge % 2 === 0 ? createElement('div', 'even') : createElement('div', 'odd')
   },
   props: {
     hoge: {
