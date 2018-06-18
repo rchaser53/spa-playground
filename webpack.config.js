@@ -9,6 +9,7 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	resolve: {
+    symlinks: false,
 		extensions: ['.ts', '.vue', '.js', '.css'],
 		alias: {
       'vue$': 'vue/dist/vue.esm.js',
