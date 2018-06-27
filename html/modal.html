@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style>
+        .modal {
+          display: block;
+          opacity: 0;
+          background-color: aqua;
+          width: 1000px;
+          height: 500px;
+        }
+      </style>
+      <script>
+        const OpaValue = .03;
+        const limit = 0.5;
+
+        window.onload = () => {
+          const modal = document.querySelector('.modal')
+          const closeBtn = document.querySelector('#closeBtn')
+          closeBtn.addEventListener('click', () => {
+            console.log(1)
+          });
+
+
+          function fadeOut(){
+            var boxOpa = parseFloat(modal.style.opacity);
+            
+            if(boxOpa > limit){
+              boxOpa = boxOpa - OpaValue;
+              box.style.opacity = boxOpa;
+              requestAnimationFrame(fadeOut);
+            }
+          }
+      
+          function fadeIn() {
+            var boxOpa = parseFloat(modal.style.opacity);
+            
+            
+            if(boxOpa < 1){
+              boxOpa = boxOpa + OpaValue;
+              modal.style.opacity = boxOpa;
+              requestAnimationFrame(fadeIn);
+            }
+          }  
+          
+          modal.style.display = 'block';
+          modal.style.opacity = 0;
+          fadeIn()
+        }
+      </script>
+  </head>
+
+  <body>
+    <div class="modal">
+      <div>konkonko-n</div>
+      <div>
+        <button id="closeBtn">close</button>
+      </div>
+    </div>
+  </body>
+</html>
